@@ -40,7 +40,7 @@
         record: "{{ item.item }}.{{ zone }}"
         type: A
         ttl: 1
-        value: "{{ results.instance[0].private_ip_address }}"
+        value: "{{ item.instance[0].private_ip_address }}"
         wait: true 
         overwrite: true
       loop: "{{ ins.results }}"
@@ -52,7 +52,7 @@
         record: "{{ zone }}"
         type: A
         ttl: 1
-        value: "{{ results.instance[0].public_ip_address }}"
+        value: "{{ item.instance[0].public_ip_address }}"
         wait: true
         overwrite: true
       loop: "{{ ins.results }}"
