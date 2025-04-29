@@ -10,6 +10,12 @@
      - frontend
      - backend
   tasks: 
+    - name: install boto3 and botocore
+      ansible.builtin.pip:
+        name: 
+        - boto3
+        - botocore
+        
     - name: creation of the instances
       amazon.aws.ec2_instance:
         name: "{ item }"
@@ -22,11 +28,7 @@
       loop: "{{ instances }}"
       register: ins
     
-    - name: install boto3 and botocore
-      ansible.builtin.pip:
-        name: 
-          - boto3
-          - botocore
+
 
 
     - name: printing the instances information
