@@ -6,9 +6,9 @@
     sg: "sg-04ee5dc1d26b0b187"
     zone: "daws19.online"
     instances:
-    - mysql
-    - frontend
-    - backend
+     - mysql
+     - frontend
+     - backend
   tasks: 
     - name: creation of the instances
       amazon.aws.ec2_instance:
