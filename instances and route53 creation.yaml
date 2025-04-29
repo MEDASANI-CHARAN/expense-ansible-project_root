@@ -31,7 +31,7 @@
 
     - name: printing the instances information
       ansible.builtin.debug:
-       msg: " the informations is : {{ ins }} " 
+       msg: " the information is : {{ ins }} " 
 
     - name: Add records to the instances
       amazon.aws.route53:
@@ -56,4 +56,4 @@
         wait: true
         overwrite: true
       loop: "{{ ins.results }}"
-      when: item.item == frontend
+      when: item.item == "frontend"
