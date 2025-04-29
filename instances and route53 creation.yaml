@@ -29,10 +29,31 @@
       register: ins
     
 
-
-
     - name: printing the instances information
       ansible.builtin.debug:
        msg: " the informations is : {{ ins }} " 
 
-  
+    - name: Add records to the instances
+      amazon.aws.route53:
+        state: present
+        zone: "{{ zone }}"
+        record: "{{ item.item }}.{{ zone }}"
+        type: A
+        ttl: 1
+        value: "{{ results.instance[0].private_ip_address }}"
+        wait: true 
+        overwrite: true
+      loop: "{{ ins.results }}"
+
+    - name: adding the public ip_address to the frontend
+      amazon.aws.route53:
+        state: present
+        zone: "{{ zone }}"
+        record: "{{ zone }}"
+        type: A
+        ttl: 1
+        value: "{{ results.instance[0].public_ip_address }}"
+        wait: true
+        overwrite: true
+      loop: "{{ ins.results }}"
+      when: item.item == frontend
