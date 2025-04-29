@@ -25,6 +25,6 @@
 
     - name: printing the instances information
       ansible.builtin.debug:
-        - msg: " the informations is : {{ ins }} " 
+       msg: " the informations is : {{ ins }} " 
 
   
