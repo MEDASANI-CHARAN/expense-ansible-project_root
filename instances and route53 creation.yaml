@@ -1,0 +1,30 @@
+- name: creating the instances , route 53 records 
+  hosts: local 
+  vars: 
+    vpc_id: "subnet-0d3c945e4107297ee"
+    ami_id: "ami-09c813fb71547fc4f"
+    sg: "sg-04ee5dc1d26b0b187"
+    zone: "daws19.online"
+    instances:
+    - mysql
+    - frontend
+    - backend
+  tasks: 
+    - name: creation of the instances
+      amazon.aws.ec2_instance:
+        name: "{ item }"
+        vpc_subnet_id: "{{ vpc_id }}"
+        instance_type: t3.micro
+        security_groups: 
+          - "{{ sg }}"
+        image_id: "{{ ami_id }}"
+        region: us-east-1
+      loop: "{{ instances }}"
+      register: ins
+    
+
+    - name: printing the instances information
+      ansible.builtin.debug:
+        - msg: " the informations is : {{ ins }} " 
+
+  
