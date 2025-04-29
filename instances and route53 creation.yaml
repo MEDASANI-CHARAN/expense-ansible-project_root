@@ -22,6 +22,12 @@
       loop: "{{ instances }}"
       register: ins
     
+    - name: install boto3 and botocore
+      ansible.builtin.pip:
+        name: 
+          - boto3
+          - botocore
+
 
     - name: printing the instances information
       ansible.builtin.debug:
