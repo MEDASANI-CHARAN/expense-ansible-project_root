@@ -18,7 +18,7 @@
         
     - name: creation of the instances
       amazon.aws.ec2_instance:
-        name: "{ item }"
+        name: "{{ item }}"
         vpc_subnet_id: "{{ vpc_id }}"
         instance_type: t3.micro
         security_groups: 
