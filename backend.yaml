@@ -1,6 +1,10 @@
 - name: configuration for the backend
   hosts: [backend]
   become: yes
+  vars:
+    package:
+      - nodejs
+      - mysql
   tasks:
     - name: " disabling node.js "
       ansible.builtin.command: " dnf module disable nodejs -y "
@@ -10,7 +14,7 @@
 
     - name: " install node.js "
       ansible.builtin.package:
-        name: nodejs
+        name: "{{ package }}"
         state: present
     - name: Create a user 'expense' with a home directory
       ansible.builtin.user:
