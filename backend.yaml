@@ -10,9 +10,9 @@
 
     - name: " install node.js "
       ansible.builtin.package:
-        name: node.js
+        name: nodejs
         state: present
-    - name: Create a user 'johnd' with a home directory
+    - name: Create a user 'expense' with a home directory
       ansible.builtin.user:
         name: expense
 
