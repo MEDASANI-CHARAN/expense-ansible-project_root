@@ -28,5 +28,5 @@
         msg : "{{ mysql }}"
 
     - name: "setting the password and the user"
-      ansible.builtin.command: " mysql_secure_installation --set-{{ root }}-pass {{ password }}"
+      ansible.builtin.command: " mysql_secure_installation --set-{{ user }}-pass {{ password }}"
       
