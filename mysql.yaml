@@ -17,8 +17,8 @@
 
     - name: installing the required packages
       ansible.builtin.package:
-        - name:
-          - PyMySQL
+        name:
+        - PyMySQL
     
     - name: "login into mysql server "
       community.mysql.mysql_info:
