@@ -1,7 +1,7 @@
 - name: creating the instances , route 53 records 
   hosts: local 
   vars: 
-    vpc_id: "subnet-0d3c945e4107297ee"
+    vpc_id: "subnet-089f42d282a060e3f"
     ami_id: "ami-09c813fb71547fc4f"
     sg: "sg-04ee5dc1d26b0b187"
     zone: "daws19.online"
