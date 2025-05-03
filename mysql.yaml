@@ -16,7 +16,7 @@
       ansible.builtin.command: " systemctl enable mysqld "
 
     - name: installing the required packages
-      ansible.builtin.package:
+      ansible.builtin.pip:
         name:
         - PyMySQL
     
