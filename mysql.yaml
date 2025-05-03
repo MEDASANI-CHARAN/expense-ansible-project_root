@@ -10,7 +10,7 @@
       ansible.builtin.command: " dnf install mysql-server -y "
 
     - name: "starting and enabling the service"
-      ansible.builtin.command: " systemctl start mysqldmysql.daws19.online "
+      ansible.builtin.command: " systemctl start mysqld "
 
     - name: "enabling the mysql server"
       ansible.builtin.command: " systemctl enable mysqld "
@@ -28,5 +28,5 @@
         msg : "{{ mysql }}"
 
     - name: "setting the password and the user"
-      ansible.builtin.command: " mysql_secure_installation --set-{{root}}-pass {{ password }}"
+      ansible.builtin.command: " mysql_secure_installation --set-{{ root }}-pass {{ password }}"
       
