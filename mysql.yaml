@@ -14,6 +14,11 @@
 
     - name: "enabling the mysql server"
       ansible.builtin.command: " systemctl enable mysqld "
+
+    - name: installing the required packages
+      ansible.builtin.package:
+        - name:
+          - PyMySQL
     
     - name: "login into mysql server "
       community.mysql.mysql_info:
@@ -29,4 +34,5 @@
 
     - name: "setting the password and the user"
       ansible.builtin.command: " mysql_secure_installation --set-{{ user }}-pass {{ password }}"
+      when: mysql.failed is true
       
