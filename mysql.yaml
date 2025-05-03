@@ -1,18 +1,19 @@
 - name: " ansible playbook for the sql  "
-  hosts: mysql
+  hosts: [mysql]
+  become: yes
   vars:
     password: " ExpenseApp@1 "
     host: " mysql.daws19.online "
     user: " root "
   tasks:
     - name: "download mysql server"
-      ansible.builtin.command: dnf install mysql-server -y
+      ansible.builtin.command: " dnf install mysql-server -y "
 
     - name: "starting and enabling the service"
-      ansible.builtin.command: systemctl start mysqld
+      ansible.builtin.command: " systemctl start mysqldmysql.daws19.online "
 
     - name: "enabling the mysql server"
-      ansible.builtin.command: systemctl enable mysqld
+      ansible.builtin.command: " systemctl enable mysqld "
     
     - name: "login into mysql server "
       community.mysql.mysql_info:
