@@ -1,9 +1,9 @@
 - name: " ansible playbook for the sql  "
-  hosts: [mysql]
+  hosts: mysql
   become: yes
   vars:
     password: " ExpenseApp@1 "
-    host: " mysql.daws19.online "
+    hst: " mysql.daws19.online "
     user: " root "
   tasks:
     - name: "download mysql server"
@@ -19,7 +19,7 @@
       community.mysql.mysql_info:
         login_user: "{{ user }}"
         login_password: "{{ password }}"
-        login_host: "{{ host }}"
+        login_host: "{{ hst }}"
       ignore_errors: true
       register: mysql
     
