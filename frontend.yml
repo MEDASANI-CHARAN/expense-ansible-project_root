@@ -1,5 +1,6 @@
 - name: " ansible playbook for frontend "
   hosts: frontend
+  become: yes
   tasks: 
     - name: " nginx installation "
       ansible.builtin.package: 
