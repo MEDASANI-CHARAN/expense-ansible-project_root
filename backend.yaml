@@ -24,7 +24,7 @@
       ansible.builtin.pip:
         name: 
          - PyMySQL
-         
+
     - name: Create a user 'expense' with a home directory
       ansible.builtin.user:
         name: expense
@@ -64,3 +64,8 @@
         name: all
         state: import
     
+    - name: " daemon reload "
+      ansible.builtin.systemd_service:
+       daemon_reload: true
+       state: started
+       name: backend
