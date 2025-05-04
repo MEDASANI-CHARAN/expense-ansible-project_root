@@ -19,6 +19,12 @@
       ansible.builtin.package:
         name: "{{ package }}"
         state: present
+
+    - name: " installing pip modules "
+      ansible.builtin.pip:
+        name: 
+         - PyMySQL
+
     - name: Create a user 'expense' with a home directory
       ansible.builtin.user:
         name: expense
@@ -57,5 +63,4 @@
         target: /app/schema/backend.sql
         name: all
         state: import
-    
     
