@@ -2,6 +2,9 @@
   hosts: [backend]
   become: yes
   vars:
+    password: " ExpenseApp@1 "
+    hst: " mysql.daws19.online "
+    user: " root "  
     package:
       - nodejs
       - mysql
@@ -46,3 +49,13 @@
         src: backend.service
         dest: /etc/systemd/system/backend.service
 
+    - name: " importing the backend.sql "
+      community.mysql.mysql_db:
+        login_user: "{{ user }}"
+        login_password: "{{ password }}"
+        login_host: "{{ hst }}"
+        target: /app/schema/backend.sql
+        name: all
+        state: import
+    
+    
