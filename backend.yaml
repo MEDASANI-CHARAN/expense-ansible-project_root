@@ -45,5 +45,5 @@
       ansible.builtin.copy:
         src: /expense-ansible/backend.service
         dest: /etc/systemd/system/backend.service
-    
-    
+        remote_src: yes
+
