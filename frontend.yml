@@ -35,9 +35,9 @@
        dest: /usr/share/nginx/html
        remote_src: yes
     
-    - name: copying the frontend.conf file
+    - name: copying the expense.conf file
       ansible.builtin.copy:
-        src: frontend.conf
+        src: expense.conf
         dest: /etc/nginx/default.d/expense.conf
 
     - name: systemctl command
