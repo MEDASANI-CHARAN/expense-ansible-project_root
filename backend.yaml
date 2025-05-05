@@ -1,9 +1,9 @@
 - name: configuration for the backend
-  hosts: [backend]
+  hosts: backend
   become: yes
   vars:
     password: ExpenseApp@1
-    hst: mysql.daws19.online
+    hst: "mysql.daws19.online"
     user: root  
     package:
       - nodejs
