@@ -3,7 +3,7 @@
   become: yes
   vars:
     password: ExpenseApp@1
-    hst: "mysql.daws19.online"
+    hst: "mysql.ajaru.shop"
     user: root  
     package:
       - nodejs
