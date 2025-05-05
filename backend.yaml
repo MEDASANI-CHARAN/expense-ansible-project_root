@@ -24,6 +24,7 @@
       ansible.builtin.pip:
         name: 
          - PyMySQL
+         - cryptography
 
     - name: Create a user 'expense' with a home directory
       ansible.builtin.user:
