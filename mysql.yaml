@@ -2,7 +2,7 @@
   hosts: mysql
   become: yes
   vars:
-    password: ExpenseApp1
+    password: ExpenseApp@1
     hst: " mysql.ajaru.shop "
     user: " root "
   tasks:
