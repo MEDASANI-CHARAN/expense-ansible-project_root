@@ -1,5 +1,5 @@
 - name: "ansible playbook for the sql"
-  hosts: db
+  hosts: mysql
   become: yes
   vars:
     hst: mysql.daws2025.online
