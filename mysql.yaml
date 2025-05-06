@@ -6,15 +6,6 @@
     hst: mysql.daws2025.online
     user: root
   tasks:
-    # - name: "download mysql server"
-    #   ansible.builtin.command: "dnf install mysql-server -y"
-
-    # - name: "starting and enabling the service"
-    #   ansible.builtin.command: "systemctl start mysqld"
-
-    # - name: "enabling the mysql server"
-    #   ansible.builtin.command: "systemctl enable mysqld"
-
   - name: Install MySQL server
     ansible.builtin.dnf:
     name: mysql-server
