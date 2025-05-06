@@ -1,10 +1,10 @@
 - name: creating the instances , route 53 records 
   hosts: local 
   vars: 
-    vpc_id: "subnet-089f42d282a060e3f"
+    vpc_id: "subnet-02cf0a564845f3546"
     ami_id: "ami-09c813fb71547fc4f"
-    sg: "sg-04ee5dc1d26b0b187"
-    zone: "ajaru.shop"
+    sg: "sg-00298594c9e650390"
+    zone: "daws2025.online"
     instances:
      - mysql
      - frontend
