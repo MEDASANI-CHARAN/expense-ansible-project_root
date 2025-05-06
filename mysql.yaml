@@ -15,42 +15,42 @@
     # - name: "enabling the mysql server"
     #   ansible.builtin.command: "systemctl enable mysqld"
 
-    - name: Install MySQL server
-      ansible.builtin.dnf:
-      name: mysql-server
-      state: latest
-  
-    - name: Start MySQL server
-      ansible.builtin.service:
-      name: mysqld
-      state: started
-  
-    - name: Enable MySQL server
-      ansible.builtin.service:
-      name: mysqld
-      enabled: yes
+  - name: Install MySQL server
+    ansible.builtin.dnf:
+    name: mysql-server
+    state: latest
 
-    - name: installing the required packages
-      ansible.builtin.pip:
-        name:
-        - PyMySQL
-        - cryptography
-        executable: pip3.9
-    
-    - name: "login into mysql server"
-      community.mysql.mysql_info:
-        login_user: "{{ user }}"
-        login_password: "{{ password }}"
-        login_host: "{{ hst }}"
-        filter: version
-      ignore_errors: true
-      register: mysql
-    
-    - name: printing the mysql information
-      ansible.builtin.debug:
-        msg : "{{ mysql }}"
+  - name: Start MySQL server
+    ansible.builtin.service:
+    name: mysqld
+    state: started
 
-    - name: "setting the password and the user"
-      ansible.builtin.command: "mysql_secure_installation --set-{{ user }}-pass {{ password }}"
-      when: mysql.failed is true
-    
+  - name: Enable MySQL server
+    ansible.builtin.service:
+    name: mysqld
+    enabled: yes
+
+  - name: installing the required packages
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      - cryptography
+      executable: pip3.9
+  
+  - name: "login into mysql server"
+    community.mysql.mysql_info:
+      login_user: "{{ user }}"
+      login_password: "{{ password }}"
+      login_host: "{{ hst }}"
+      filter: version
+    ignore_errors: true
+    register: mysql
+  
+  - name: printing the mysql information
+    ansible.builtin.debug:
+      msg : "{{ mysql }}"
+
+  - name: "setting the password and the user"
+    ansible.builtin.command: "mysql_secure_installation --set-{{ user }}-pass {{ password }}"
+    when: mysql.failed is true
+  
