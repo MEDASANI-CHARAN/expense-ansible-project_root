@@ -2,7 +2,7 @@
   hosts: backend
   become: yes
   vars:
-    password: ExpenseApp@1
+    password: ExpenseApp1
     hst: "mysql.ajaru.shop"
     user: root  
     package:
