@@ -20,9 +20,9 @@
         name:
         - PyMySQL
         - cryptography
-      executable: pip3.9
+        executable: pip3.9
     
-    - name: "login into mysql server "
+    - name: "login into mysql server"
       community.mysql.mysql_info:
         login_user: "{{ user }}"
         login_password: "{{ password }}"
