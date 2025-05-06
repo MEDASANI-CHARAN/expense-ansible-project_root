@@ -6,14 +6,29 @@
     hst: mysql.daws2025.online
     user: root
   tasks:
-    - name: "download mysql server"
-      ansible.builtin.command: "dnf install mysql-server -y"
+    # - name: "download mysql server"
+    #   ansible.builtin.command: "dnf install mysql-server -y"
 
-    - name: "starting and enabling the service"
-      ansible.builtin.command: "systemctl start mysqld"
+    # - name: "starting and enabling the service"
+    #   ansible.builtin.command: "systemctl start mysqld"
 
-    - name: "enabling the mysql server"
-      ansible.builtin.command: "systemctl enable mysqld"
+    # - name: "enabling the mysql server"
+    #   ansible.builtin.command: "systemctl enable mysqld"
+
+    - name: Install MySQL server
+      ansible.builtin.dnf:
+      name: mysql-server
+      state: latest
+  
+    - name: Start MySQL server
+      ansible.builtin.service:
+      name: mysqld
+      state: started
+  
+    - name: Enable MySQL server
+      ansible.builtin.service:
+      name: mysqld
+      enabled: yes
 
     - name: installing the required packages
       ansible.builtin.pip:
@@ -38,4 +53,4 @@
     - name: "setting the password and the user"
       ansible.builtin.command: "mysql_secure_installation --set-{{ user }}-pass {{ password }}"
       when: mysql.failed is true
-      
+    
