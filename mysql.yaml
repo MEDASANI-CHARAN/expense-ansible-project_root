@@ -3,7 +3,7 @@
   become: yes
   vars:
     password: ExpenseApp@1
-    hst: " mysql.ajaru.shop "
+    hst: " mysql.daws2025.online "
     user: " root "
   tasks:
     - name: "download mysql server"
