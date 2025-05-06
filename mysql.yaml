@@ -1,48 +1,59 @@
-- name: configure DB server
+- name: "ansible playbook for the sql"
   hosts: db
   become: yes
   vars:
-    login_host: mysql.daws2025.online
+    hst: mysql.daws2025.online
+    user: root
   vars_prompt:
-  - name: PASSWORD
+  - name: password
     prompt: please enter your password
     private: false
   tasks:
+    # - name: "download mysql server"
+    #   ansible.builtin.command: "dnf install mysql-server -y"
+
+    # - name: "starting and enabling the service"
+    #   ansible.builtin.command: "systemctl start mysqld"
+
+    # - name: "enabling the mysql server"
+    #   ansible.builtin.command: "systemctl enable mysqld"
+
   - name: Install MySQL server
     ansible.builtin.dnf:
       name: mysql-server
       state: latest
-  
+
   - name: Start MySQL server
     ansible.builtin.service:
       name: mysqld
       state: started
-  
+
   - name: Enable MySQL server
     ansible.builtin.service:
       name: mysqld
       enabled: yes
 
-  - name: install python mysql dependencies
+  - name: installing the required packages
     ansible.builtin.pip:
-      name: 
+      name:
       - PyMySQL
       - cryptography
       executable: pip3.9
-
-  - name: check DB connection
-    community.mysql.mysql_info:
-      login_user: root
-      login_password: "{{PASSWORD}}"
-      login_host: "{{login_host}}"
-      filter: version
-    ignore_errors: yes
-    register: mysql_connection_output
   
-  - name: print the output
+  - name: "login into mysql server"
+    community.mysql.mysql_info:
+      login_user: "{{ user }}"
+      login_password: "{{ password }}"
+      login_host: "{{ hst }}"
+      filter: version
+    ignore_errors: true
+    register: mysql
+  
+  - name: printing the mysql information
     ansible.builtin.debug:
-      msg: "output: {{mysql_connection_output}}"
+      msg : "{{ mysql }}"
 
-  - name: setup root password
-    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{PASSWORD}}"
-    when: mysql_connection_output.failed is true
+  - name: "setting the password and the user"
+    ansible.builtin.command: "mysql_secure_installation --set-{{ user }}-pass {{ password }}"
+    when: mysql.failed is true
+  
