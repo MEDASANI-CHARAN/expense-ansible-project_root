@@ -2,9 +2,9 @@
   hosts: backend
   become: yes
   vars:
-    password: ExpenseApp@1
-    hst: "mysql.ajaru.shop"
-    user: root  
+    # password: ExpenseApp@1
+    # hst: "mysql.ajaru.shop"
+    # user: root  
     package:
       - nodejs
       - mysql
@@ -58,9 +58,9 @@
 
     - name: " importing the backend.sql "
       community.mysql.mysql_db:
-        login_user: "{{ user }}"
-        login_password: "{{ password }}"
-        login_host: "{{ hst }}"
+        login_user: "root"
+        login_password: "ExpenseApp@1"
+        login_host: "mysql.ajaru.shop"
         target: /app/schema/backend.sql
         name: all
         state: import
