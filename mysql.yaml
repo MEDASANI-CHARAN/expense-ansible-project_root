@@ -3,8 +3,8 @@
   become: yes
   vars:
     password: ExpenseApp@1
-    hst: " mysql.daws2025.online "
-    user: " root "
+    hst: mysql.daws2025.online
+    user: root
   tasks:
     - name: "download mysql server"
       ansible.builtin.command: " dnf install mysql-server -y "
