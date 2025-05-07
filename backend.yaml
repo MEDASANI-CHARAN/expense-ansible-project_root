@@ -3,7 +3,7 @@
   become: yes
   vars:
     # password: ExpenseApp@1
-    # hst: "mysql.ajaru.shop"
+    # hst: "mysql.daws2025.online"
     # user: root  
     package:
       - nodejs
@@ -58,9 +58,9 @@
 
     - name: " importing the backend.sql "
       community.mysql.mysql_db:
-        login_user: "expense"
+        login_user: "root"
         login_password: "ExpenseApp@1"
-        login_host: "mysql.ajaru.shop"
+        login_host: "mysql.daws2025.online"
         target: /app/schema/backend.sql
         name: all
         state: import
